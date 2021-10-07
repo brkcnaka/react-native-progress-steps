@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
 
 class StepIcon extends Component {
   render() {
-    let styles;
+    let styles
 
     if (this.props.isActiveStep) {
       styles = {
@@ -19,7 +19,8 @@ class StepIcon extends Component {
         },
         circleText: {
           alignSelf: 'center',
-          top: 20 / 3,
+          top: 1,
+          left: 0.5,
         },
         labelText: {
           textAlign: 'center',
@@ -52,8 +53,9 @@ class StepIcon extends Component {
         },
         stepNum: {
           color: this.props.activeStepNumColor,
+          fontFamily: this.props.activeStepFontFamily,
         },
-      };
+      }
     } else if (this.props.isCompletedStep) {
       styles = {
         circleStyle: {
@@ -64,7 +66,7 @@ class StepIcon extends Component {
         },
         circleText: {
           alignSelf: 'center',
-          top: 18 / 2,
+          top: 1,
         },
         labelText: {
           textAlign: 'center',
@@ -99,7 +101,7 @@ class StepIcon extends Component {
         stepNum: {
           color: this.props.completedStepNumColor,
         },
-      };
+      }
     } else {
       styles = {
         circleStyle: {
@@ -110,7 +112,8 @@ class StepIcon extends Component {
         },
         circleText: {
           alignSelf: 'center',
-          top: 18 / 2,
+          top: 1,
+          left: 0.5,
         },
         labelText: {
           textAlign: 'center',
@@ -144,16 +147,24 @@ class StepIcon extends Component {
         },
         stepNum: {
           color: this.props.disabledStepNumColor,
+          fontFamily: this.props.disabledStepFontFamily,
         },
-      };
+      }
     }
 
     return (
       <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-        <View style={styles.circleStyle}>
+        <View
+          style={[
+            styles.circleStyle,
+            { alignItems: 'center', justifyContent: 'center' },
+          ]}
+        >
           <Text style={styles.circleText}>
             {this.props.isCompletedStep ? (
-              <Text style={{ color: this.props.completedCheckColor }}>&#10003;</Text>
+              <Text style={{ color: this.props.completedCheckColor }}>
+                &#10003;
+              </Text>
             ) : (
               <Text style={styles.stepNum}>{this.props.stepNum}</Text>
             )}
@@ -163,7 +174,7 @@ class StepIcon extends Component {
         {!this.props.isFirstStep && <View style={styles.leftBar} />}
         {!this.props.isLastStep && <View style={styles.rightBar} />}
       </View>
-    );
+    )
   }
 }
 
@@ -192,11 +203,13 @@ StepIcon.propTypes = {
   completedLabelColor: PropTypes.string,
 
   activeStepNumColor: PropTypes.string,
+  activeStepFontFamily: PropTypes.string,
   completedStepNumColor: PropTypes.string,
   disabledStepNumColor: PropTypes.string,
+  disabledStepFontFamily: PropTypes.string,
 
   completedCheckColor: PropTypes.string,
-};
+}
 
 StepIcon.defaultProps = {
   borderWidth: 3,
@@ -220,6 +233,6 @@ StepIcon.defaultProps = {
   disabledStepNumColor: 'white',
 
   completedCheckColor: 'white',
-};
+}
 
-export default StepIcon;
+export default StepIcon
