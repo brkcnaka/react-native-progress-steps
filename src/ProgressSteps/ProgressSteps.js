@@ -81,7 +81,7 @@ class ProgressSteps extends Component {
     }
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <View style={styles.stepIcons}>{this.renderStepIcons()}</View>
         <View
           style={{ height: 1, width: '100%', backgroundColor: '#a3a5a940' }}
